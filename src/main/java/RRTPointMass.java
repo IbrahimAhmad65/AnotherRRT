@@ -6,17 +6,14 @@ public class RRTPointMass {
     private Node goal;
     private Node start;
     private double goalRadius;
-    private double dt;
-    private double mass = 1;
     private final int MAX_ITERATIONS = 5000;
     private static double maxAccel = 10;
     private static int tresholdToGiveUpOnsNeighbors = 50;
 
-    public RRTPointMass(Node start, Node goal, double goalRadius, double dt) {
+    public RRTPointMass(Node start, Node goal, double goalRadius) {
         this.start = start;
         this.goal = goal;
         this.goalRadius = goalRadius;
-        this.dt = dt;
         this.tree = new Tree();
     }
 
@@ -26,6 +23,8 @@ public class RRTPointMass {
         Node goalNode = new Node(goal.getX(), goal.getY(), goal.getVX(), goal.getVY(), null, Double.MAX_VALUE);
         for (int i = 0; i < MAX_ITERATIONS; i++) {
             Node rand = findRandomNode(3, 3);
+
+            // use find optimal parent if finding collisions is cheap. If its expensive use nearest + rewire
             Node nearest = findOptimalParent(rand, tree);
             Node newNode = extend(nearest, rand);
             newNode = newNode.setParent(nearest);
@@ -165,7 +164,7 @@ public class RRTPointMass {
         RRTPointMass rrt = new RRTPointMass(
                 new Node(1, 1, 1, -1, null, 0),
                 new Node(3, 3, 0, 0, null, 0),
-                .5, 0.1);
+                .5);
         ArrayList<Node> path = (ArrayList<Node>) rrt.rrt_();
         Tree printout = new Tree(path);
         System.out.println("------------------");

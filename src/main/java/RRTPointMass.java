@@ -1,18 +1,19 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class RRTPointMass {
     private Tree tree;
     private Node goal;
     private Node start;
     private double goalRadius;
-    private final int MAX_ITERATIONS = 5000;
+    private final int MAX_ITERATIONS = 10000;
     private static double maxAccel = 10;
     private static int tresholdToGiveUpOnsNeighbors = 50;
 
     public RRTPointMass(Node start, Node goal, double goalRadius) {
         this.start = start;
-        this.goal = goal;
+        this.goal = goal.setTime(Double.MAX_VALUE);
         this.goalRadius = goalRadius;
         this.tree = new Tree();
     }
@@ -24,11 +25,14 @@ public class RRTPointMass {
         for (int i = 0; i < MAX_ITERATIONS; i++) {
             Node rand = findRandomNode(3, 3);
 
-            // use find optimal parent if finding collisions is cheap. If its expensive use nearest + rewire
+            // use find optimal parent if finding collisions is cheap. If its expensive use
+            // nearest + rewire
             Node nearest = findOptimalParent(rand, tree);
             Node newNode = extend(nearest, rand);
-            newNode = newNode.setParent(nearest);
-            tree = tree.AddNode(newNode);
+            if (newNode.getTime() < goalNode.getTime()) {
+                newNode = newNode.setParent(nearest);
+                tree = tree.AddNode(newNode);
+            }
             // rewire(newNode, tree);
             if (findDistance(newNode, goal) < goalRadius && goalNode.getTime() > newNode.getTime()) {
                 goalNode = newNode;
@@ -99,10 +103,11 @@ public class RRTPointMass {
     }
 
     public static final Node findRandomNode(double maxX, double maxY) {
-        double x = Math.random() * maxX;
-        double y = Math.random() * maxY;
-        double vx = 1 * (Math.random() - .5);
-        double vy = 1 * (Math.random() - .5);
+        var r = new Random();
+        double x = r.nextDouble() * maxX;
+        double y = r.nextDouble() * maxY;
+        double vx = 1 * (r.nextDouble() - .5);
+        double vy = 1 * (r.nextDouble() - .5);
         return new Node(x, y, vx, vy, null, 0);
     }
 
@@ -161,11 +166,15 @@ public class RRTPointMass {
     }
 
     public static void main(String[] args) {
-        RRTPointMass rrt = new RRTPointMass(
-                new Node(1, 1, 1, -1, null, 0),
-                new Node(3, 3, 0, 0, null, 0),
-                .5);
-        ArrayList<Node> path = (ArrayList<Node>) rrt.rrt_();
+        ArrayList<Node> path = new ArrayList<Node>();
+        for (int i = 0; i < 1; i++) {
+
+            RRTPointMass rrt = new RRTPointMass(
+                    new Node(1, 1, 1, -1, null, 0),
+                    new Node(3, 3, 0, 0, null, 0),
+                    .5);
+            path = (ArrayList<Node>) rrt.rrt_();
+        }
         Tree printout = new Tree(path);
         System.out.println("------------------");
         System.out.println(printout);

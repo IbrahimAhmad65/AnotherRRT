@@ -16,12 +16,12 @@ public final class CubicHermite {
     }
 
     public static double getSecondsToTraverse(Cubic xCubic, Cubic yCubic, double maxAccel) {
-        Function<Double, Double> accelMagnitudeFunction = (x) -> Math.sqrt(
-                x * x * 36 * (xCubic.a * xCubic.a + yCubic.a * yCubic.a)
-                        + x * 24 * (xCubic.a * xCubic.b + yCubic.a * yCubic.b)
-                        + 4 * (xCubic.b * xCubic.b + yCubic.b * yCubic.b));
-        double testBound1 = accelMagnitudeFunction.apply(0.0);
-        double testBound2 = accelMagnitudeFunction.apply(1.0);
+//        Function<Double, Double> accelMagnitudeFunction = (x) -> Math.sqrt(
+//                x * x * 36 * (xCubic.a * xCubic.a + yCubic.a * yCubic.a)
+//                        + x * 24 * (xCubic.a * xCubic.b + yCubic.a * yCubic.b)
+//                        + 4 * (xCubic.b * xCubic.b + yCubic.b * yCubic.b));
+        double testBound1 = accelMagnitudeFunction(0.0,xCubic,yCubic);
+        double testBound2 = accelMagnitudeFunction(1.0,xCubic,yCubic);
         double a = xCubic.a;
         double b = xCubic.b;
         double a1 = yCubic.a;
@@ -29,10 +29,17 @@ public final class CubicHermite {
         // Not actually the right number, but has the same x value for all values of a,b
         // a1,b1
         double derivativeOfAccelZero = (-a * b - a1 * b1) / (3 * (a * a + a1 * a1));
-        double testMaybe = accelMagnitudeFunction.apply(derivativeOfAccelZero);
+        double testMaybe = accelMagnitudeFunction(derivativeOfAccelZero,xCubic,yCubic);
         double maxAccelcurrent = Math.max(testBound1, Math.max(testBound2, testMaybe));
 
         return maxAccelcurrent / maxAccel;
+    }
+
+    public static double accelMagnitudeFunction(double x, Cubic xCubic, Cubic yCubic) {
+        return Math.sqrt(
+                x * x * 36 * (xCubic.a * xCubic.a + yCubic.a * yCubic.a)
+                        + x * 24 * (xCubic.a * xCubic.b + yCubic.a * yCubic.b)
+                        + 4 * (xCubic.b * xCubic.b + yCubic.b * yCubic.b));
     }
 
     public static void main(String[] args) {

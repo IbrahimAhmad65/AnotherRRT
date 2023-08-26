@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-import CubicHermite.Cubic;
+//import Cubic;
 
 public class Tree {
     private ArrayList<Node> nodes;
@@ -17,6 +17,7 @@ public class Tree {
     public Tree(ArrayList<Node> nodes) {
         this.nodes = (ArrayList<Node>) nodes.clone();
     }
+
 
     public Tree AddNode(Node node) {
         Tree newTree = new Tree(this.nodes);

@@ -7,7 +7,7 @@ public class RRTPointMass {
     private Node goal;
     private Node start;
     private double goalRadius;
-    private final int MAX_ITERATIONS = 10000;
+    private final int MAX_ITERATIONS = 50000;
     private static double maxAccel = 10;
     private static int tresholdToGiveUpOnsNeighbors = 50;
 
@@ -171,8 +171,8 @@ public class RRTPointMass {
 
             RRTPointMass rrt = new RRTPointMass(
                     new Node(1, 1, 1, -1, null, 0),
-                    new Node(3, 3, 0, 0, null, 0),
-                    .5);
+                    new Node(2, 2, 0, -1, null, 0),
+                    .1);
             path = (ArrayList<Node>) rrt.rrt_();
         }
         Tree printout = new Tree(path);

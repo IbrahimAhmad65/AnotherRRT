@@ -3,4 +3,4 @@ project(cLib)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(cLib main.cpp RRT/Node.cpp RRT/Tree.cpp RRT/RRTPointMass.cpp RRT/Util.cpp)
+add_executable(cLib main.cpp RRT/Node.cpp RRT/Tree.cpp RRT/RRTPointMass.cpp)

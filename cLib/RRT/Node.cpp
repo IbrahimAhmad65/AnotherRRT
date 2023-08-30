@@ -14,6 +14,7 @@ public:
     double y;
     double vx;
     double vy;
+    // Check if i want a weak pointer here or a full shared one
     std::shared_ptr<Node> parent;
 };
 

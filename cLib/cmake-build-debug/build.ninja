@@ -55,30 +55,6 @@ build CMakeFiles/cLib.dir/main.cpp.o: CXX_COMPILER__cLib_Debug /home/ibrahim/rob
   OBJECT_DIR = CMakeFiles/cLib.dir
   OBJECT_FILE_DIR = CMakeFiles/cLib.dir
 
-build CMakeFiles/cLib.dir/RRT/Node.cpp.o: CXX_COMPILER__cLib_Debug /home/ibrahim/robotCode/AnotherRRT/cLib/RRT/Node.cpp || cmake_object_order_depends_target_cLib
-  DEP_FILE = CMakeFiles/cLib.dir/RRT/Node.cpp.o.d
-  FLAGS = -g -fdiagnostics-color=always -std=gnu++23
-  OBJECT_DIR = CMakeFiles/cLib.dir
-  OBJECT_FILE_DIR = CMakeFiles/cLib.dir/RRT
-
-build CMakeFiles/cLib.dir/RRT/Tree.cpp.o: CXX_COMPILER__cLib_Debug /home/ibrahim/robotCode/AnotherRRT/cLib/RRT/Tree.cpp || cmake_object_order_depends_target_cLib
-  DEP_FILE = CMakeFiles/cLib.dir/RRT/Tree.cpp.o.d
-  FLAGS = -g -fdiagnostics-color=always -std=gnu++23
-  OBJECT_DIR = CMakeFiles/cLib.dir
-  OBJECT_FILE_DIR = CMakeFiles/cLib.dir/RRT
-
-build CMakeFiles/cLib.dir/RRT/RRTPointMass.cpp.o: CXX_COMPILER__cLib_Debug /home/ibrahim/robotCode/AnotherRRT/cLib/RRT/RRTPointMass.cpp || cmake_object_order_depends_target_cLib
-  DEP_FILE = CMakeFiles/cLib.dir/RRT/RRTPointMass.cpp.o.d
-  FLAGS = -g -fdiagnostics-color=always -std=gnu++23
-  OBJECT_DIR = CMakeFiles/cLib.dir
-  OBJECT_FILE_DIR = CMakeFiles/cLib.dir/RRT
-
-build CMakeFiles/cLib.dir/RRT/Util.cpp.o: CXX_COMPILER__cLib_Debug /home/ibrahim/robotCode/AnotherRRT/cLib/RRT/Util.cpp || cmake_object_order_depends_target_cLib
-  DEP_FILE = CMakeFiles/cLib.dir/RRT/Util.cpp.o.d
-  FLAGS = -g -fdiagnostics-color=always -std=gnu++23
-  OBJECT_DIR = CMakeFiles/cLib.dir
-  OBJECT_FILE_DIR = CMakeFiles/cLib.dir/RRT
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target cLib
@@ -87,7 +63,7 @@ build CMakeFiles/cLib.dir/RRT/Util.cpp.o: CXX_COMPILER__cLib_Debug /home/ibrahim
 #############################################
 # Link the executable cLib
 
-build cLib: CXX_EXECUTABLE_LINKER__cLib_Debug CMakeFiles/cLib.dir/main.cpp.o CMakeFiles/cLib.dir/RRT/Node.cpp.o CMakeFiles/cLib.dir/RRT/Tree.cpp.o CMakeFiles/cLib.dir/RRT/RRTPointMass.cpp.o CMakeFiles/cLib.dir/RRT/Util.cpp.o
+build cLib: CXX_EXECUTABLE_LINKER__cLib_Debug CMakeFiles/cLib.dir/main.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/cLib.dir
   POST_BUILD = :

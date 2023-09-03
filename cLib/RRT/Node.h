@@ -6,6 +6,7 @@
 #define CLIB_NODE_H
 
 #include <memory>
+#include <utility>
 
 struct Node {
 public:
@@ -15,13 +16,16 @@ public:
 
     Node() = default;
 
-    double x{};
-    double y{};
-    double vx{};
-    double vy{};
-    double time{};
+    double x;
+    double y;
+    double vx;
+    double vy;
+    double time = 1e307;
     // Check if i want a weak pointer here or a full shared one
-    std::weak_ptr<Node> parent;
+    std::shared_ptr<Node> parent;
+    bool operator==(const Node& other) const {
+        return this->x == other.x && this->y == other.y && this->vx == other.vx && this->vy == other.vy;
+    }
 };
 
 
@@ -30,7 +34,7 @@ Node::Node(double x, double y,double vx, double vy, std::shared_ptr<Node> parent
     this->y = y;
     this-> vx = vx;
     this-> vy = vy;
-    this->parent = parent;
+    this->parent = std::move(parent);
     this->time = time;
 }
 

@@ -1,7 +1,10 @@
-#include <iostream>
 #include "RRT/RRTPointMass.h"
+#include "Debug/Timer.h"
+
 int main() {
-    for (int i = 0; i < 10; ++i) {
+    {
+        Timer timer;
+//        for (int i = 0; i < 10; ++i) {
 
         RRTPointMassConfig config = RRTPointMassConfig();
         config.maxX = 3;
@@ -17,6 +20,7 @@ int main() {
 //        path[0] = {0,0,0,0};
 //    std::cout << "Path: "<< path.size() << std::endl;
 //    printPath(path);
+//        }
     }
     return 0;
 }

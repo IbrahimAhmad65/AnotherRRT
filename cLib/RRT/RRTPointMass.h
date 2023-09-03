@@ -7,9 +7,11 @@
 
 #include <vector>
 #include <future>
+#include <iostream>
 #include "Node.h"
 #include "Tree.h"
 #include "CubicHermite.h"
+#include "../Debug/Timer.h"
 
 //double findDistance(const Node &n1, const Node &n2);
 
@@ -42,26 +44,27 @@ void findNearestNodeOnRange(const Tree &tree, const Node &node, int start, int e
 
 void printTree(const Tree &tree);
 
-Node findNearestNodeMultithreaded(const Tree & tree, int threads, const Node& other);
+Node findNearestNodeMultithreaded(const Tree &tree, int threads, const Node &other);
 
 std::vector<Node> rrtPointMass(const Node &start, const Node &end, RRTPointMassConfig config) {
     int threads = 4;
     Tree tree = Tree();
 //    __add_Node(tree, start);
     tree.nodes.push_back(start);
-    tree.nodes.reserve(config.iterations);
+    tree.nodes.reserve(config.iterations + 1);
     Node goalNode = end;
     goalNode.time = 1e307;
 
     for (int i = 0; i < config.iterations; ++i) {
+//        std::cout << "Iteration " << i << std::endl;
+//        {
+//            Timer timer;
         Node rand = createRandomNode(config.maxX, config.maxY, config.maxVel);
         Node nearest;
-        if(i > 5000){
-            nearest = findNearestNodeMultithreaded(tree,threads,rand);
-        } else{
-            nearest = findNearestNode(tree, rand);
-        }
-        Node newNode = extend(nearest, rand, config.maxAccel);
+        nearest = findNearestNode(tree, rand);
+
+        Node newNode;
+        newNode = extend(nearest, rand, config.maxAccel);
         if (newNode.time > goalNode.time) {
             continue;
         }
@@ -69,7 +72,7 @@ std::vector<Node> rrtPointMass(const Node &start, const Node &end, RRTPointMassC
         if (findDistance4d(newNode, end) < config.radiusOfCompletion && goalNode.time > newNode.time) {
             goalNode = newNode;
         }
-
+//        }
     }
 
 
@@ -90,12 +93,15 @@ void printPath(std::vector<Node> path) {
         }
     }
 }
-Node findNearestNodeMultithreaded(const Tree & tree, int threads, const Node& other){
+
+Node findNearestNodeMultithreaded(const Tree &tree, int threads, const Node &other) {
     std::vector<std::future<void>> future;
     std::vector<Node> nodeArr(4);
     int width = tree.nodes.size() / threads;
     for (int j = 0; j < threads; ++j) {
-        future.push_back(std::async(std::launch::async, findNearestNodeOnRange, tree, other, j * width, (j + 1) * width,j, nodeArr));
+        future.push_back(
+                std::async(std::launch::async, findNearestNodeOnRange, tree, other, j * width, (j + 1) * width, j,
+                           nodeArr));
     }
     Node nearest = nodeArr[0];
     double dist = findDistance4d(nearest, other);
@@ -108,6 +114,7 @@ Node findNearestNodeMultithreaded(const Tree & tree, int threads, const Node& ot
     }
     return nearest;
 }
+
 void printTree(const Tree &tree) {
     for (int i = 0; i < tree.nodes.size() - 1; ++i) {
         Node n1 = tree.nodes[i];
@@ -159,7 +166,8 @@ Node createRandomNode(double maxX, double maxY, double maxVel) {
 }
 
 
-void findNearestNodeOnRange(const Tree &tree, const Node &node, int start, int end, int index, std::vector<Node >nodeArray) {
+void
+findNearestNodeOnRange(const Tree &tree, const Node &node, int start, int end, int index, std::vector<Node> nodeArray) {
     double minDistance = 1e307;
     Node nearestNode = Node();
     for (int i = start; i < end; ++i) {

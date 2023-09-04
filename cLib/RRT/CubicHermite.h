@@ -8,26 +8,30 @@
 #include <memory>
 #include <cmath>
 
-struct Knot{
+struct Knot {
     double x;
     double vx;
 };
-struct XYKnot{
+
+struct XYKnot {
 
     Knot xKnot;
     Knot yKnot;
-    XYKnot(Knot xKnot, Knot yKnot){
+
+    XYKnot(Knot xKnot, Knot yKnot) {
         this->xKnot = xKnot;
         this->yKnot = yKnot;
     }
 
 };
-struct Cubic{
+
+struct Cubic {
     double a;
     double b;
     double c;
     double d;
 };
+
 double accelMagnitudeFunction(double x, Cubic xCubic, Cubic yCubic);
 
 Cubic createCubicFromKnots(Knot initial, Knot end) {
@@ -41,8 +45,8 @@ Cubic createCubicFromKnots(Knot initial, Knot end) {
 
 double getSecondsToTraverse(Cubic xCubic, Cubic yCubic, double maxAccel) {
 
-    double testBound1 = accelMagnitudeFunction(0.0,xCubic,yCubic);
-    double testBound2 = accelMagnitudeFunction(1.0,xCubic,yCubic);
+    double testBound1 = accelMagnitudeFunction(0.0, xCubic, yCubic);
+    double testBound2 = accelMagnitudeFunction(1.0, xCubic, yCubic);
     double a = xCubic.a;
     double b = xCubic.b;
     double a1 = yCubic.a;
@@ -50,16 +54,20 @@ double getSecondsToTraverse(Cubic xCubic, Cubic yCubic, double maxAccel) {
     // Not actually the right number, but has the same x value for all values of a,b
     // a1,b1
     double derivativeOfAccelZero = (-a * b - a1 * b1) / (3 * (a * a + a1 * a1));
-    double testMaybe = accelMagnitudeFunction(derivativeOfAccelZero,xCubic,yCubic);
+    double testMaybe = accelMagnitudeFunction(derivativeOfAccelZero, xCubic, yCubic);
     double maxAccelOfOrignialPath = std::fmax(testBound1, std::fmax(testBound2, testMaybe));
 
     return maxAccelOfOrignialPath / maxAccel;
 }
 
 double accelMagnitudeFunction(double x, Cubic xCubic, Cubic yCubic) {
-    return std::sqrt(
+    return
+//    std::sqrt(
             x * x * 36 * (xCubic.a * xCubic.a + yCubic.a * yCubic.a)
             + x * 24 * (xCubic.a * xCubic.b + yCubic.a * yCubic.b)
-            + 4 * (xCubic.b * xCubic.b + yCubic.b * yCubic.b));
+            + 4 * (xCubic.b * xCubic.b + yCubic.b * yCubic.b)
+//            );
+            ;
 }
+
 #endif //CLIB_CUBICHERMITE_H

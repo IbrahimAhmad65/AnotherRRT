@@ -24,7 +24,8 @@ private:
         auto end = std::chrono::time_point_cast<std::chrono::microseconds>(endTimepoint).time_since_epoch().count();
         auto duration = end -start;
         double ms = duration *.001;
-        std::cout<< ms << "ms" << std::endl;
+//        std::cout<< ms << "ms" << std::endl;
+        std::cout<< ms << std::endl;
     }
 };
 

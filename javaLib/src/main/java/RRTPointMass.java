@@ -36,7 +36,7 @@ public class RRTPointMass {
             // rewire(newNode, tree);
             if (findDistance(newNode, goal) < goalRadius && goalNode.getTime() > newNode.getTime()) {
                 goalNode = newNode;
-                System.out.println(goalNode.getTime());
+//                System.out.println(goalNode.getTime());
             }
         }
         return getPathFromTree(tree, goalNode);
@@ -167,17 +167,18 @@ public class RRTPointMass {
 
     public static void main(String[] args) {
         ArrayList<Node> path = new ArrayList<Node>();
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 100; i++) {
 
             RRTPointMass rrt = new RRTPointMass(
                     new Node(1, 1, 1, -1, null, 0),
                     new Node(2, 2, 0, -1, null, 0),
                     .1);
             path = (ArrayList<Node>) rrt.rrt_();
+            path.add(null);
         }
-        Tree printout = new Tree(path);
-        System.out.println("------------------");
-        System.out.println(printout);
+//        Tree printout = new Tree(path);
+//        System.out.println("------------------");
+//        System.out.println(printout);
         // Node n1 = new Node(0, 0, 1, 0, null, 0);
         // Node n2 = new Node(5, 5, 1, 1, null, 0);
         // System.out.println(RRTPointMass.extend(n1, n2, null, null, maxAccel,

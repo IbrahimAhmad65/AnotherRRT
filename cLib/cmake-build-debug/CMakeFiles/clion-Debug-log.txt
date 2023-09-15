@@ -1,4 +1,4 @@
-/home/ibrahim/clion-2022.3.1/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -S /home/ibrahim/robotics/AnotherRRT/cLib -B /home/ibrahim/robotics/AnotherRRT/cLib/cmake-build-debug
+/home/ibrahim/ides/clion-2023.1.3/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/ibrahim/ides/clion-2023.1.3/bin/ninja/linux/x64/ninja -G Ninja -S /home/ibrahim/robotCode/AnotherRRT/cLib -B /home/ibrahim/robotCode/AnotherRRT/cLib/cmake-build-debug
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/ibrahim/robotics/AnotherRRT/cLib/cmake-build-debug
+-- Build files have been written to: /home/ibrahim/robotCode/AnotherRRT/cLib/cmake-build-debug

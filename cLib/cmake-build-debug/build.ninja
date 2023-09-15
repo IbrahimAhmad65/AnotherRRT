@@ -51,7 +51,7 @@ build cmake_object_order_depends_target_cLib: phony || CMakeFiles/cLib.dir
 
 build CMakeFiles/cLib.dir/main.cpp.o: CXX_COMPILER__cLib_Debug /home/ibrahim/robotCode/AnotherRRT/cLib/main.cpp || cmake_object_order_depends_target_cLib
   DEP_FILE = CMakeFiles/cLib.dir/main.cpp.o.d
-  FLAGS = -g -fdiagnostics-color=always -std=gnu++23
+  FLAGS = -g -fdiagnostics-color=always -march=native -std=gnu++23
   OBJECT_DIR = CMakeFiles/cLib.dir
   OBJECT_FILE_DIR = CMakeFiles/cLib.dir
 

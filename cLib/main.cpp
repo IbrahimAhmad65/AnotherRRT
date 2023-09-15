@@ -39,11 +39,14 @@ int main() {
         g.nodes.push_back(n2);
         g.nodes.push_back(n3);
         auto nodes= generateFilledNodes(g.nodes,1);
-        g.nodes = nodes;
 //        g.nodes[0].neighbors.erase(g.nodes[0].neighbors.begin());
 //        std::cout << "Hey" << std::endl;
 
-        __djikstra(g, g.nodes[0], g.nodes[2]);
+        auto k = djikstra_(nodes, nodes[0], nodes[2]);
+
+        for (auto j:k) {
+            std::cout << j.x << " " << j.y << " " << j.cost << std::endl;
+        }
 //        for(auto n : arr)
 //        {
 //            for(auto k : n.neighbors){

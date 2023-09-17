@@ -2,7 +2,6 @@
 #include "Debug/Timer.h"
 #include "RRT/Djikstra/Graph.h"
 #include "RRT/Djikstra/Djikstra.h"
-
 int main() {
     if(false)
     {

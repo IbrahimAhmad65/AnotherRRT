@@ -5,20 +5,22 @@
 #ifndef CLIB_SWERVERRTFUNCS_H
 #define CLIB_SWERVERRTFUNCS_H
 
-#include "SwerveNode.h"
+#include "structs/RRTStructs.h"
+#include "structs/Config.h"
+#include "dynamics_kinematics/SwerveDriveKinematicsRRT.h"
 
 namespace swerve {
     swerve::Node
     iterateWithController(const swerve::Node &start, const swerve::Node &end, const swerve::SwerveConfig &config,
                           const swerve::RRTConfig &rrtConfig) {
-//        Pose error = end.state.position - start.state.position;
-//        Pose errorOfVelocities = end.state.firstDerivative - start.state.firstDerivative;
-//        swerve::Force positionTranslationalForce = {config.xController.get(end.state.position.p.x, error.p.x),
-//                                                    config.yController.get(end.state.position.p.y, error.p.y)};
-//        swerve::Force velTranslationalForce = {config.vxController.get(end.state.firstDerivative.p.y, errorOfVelocities.p.x),
-//                                               config.vyController.get(end.state.firstDerivative.p.y, errorOfVelocities.p.y)};
-//        swerve::F
-//// Just do forward kinematics for swerve then grab the dynamics for the output, kinda expensive, but i can think of a better way rn bc its almost 4 am sadness
+
+        std::vector<Velocity> velocities = getWheelVelocities(config,start.state, end.state);
+        std::vector<Force> forces;
+        forces.reserve(4);
+        for (int i = 0; i < 4; i++) {
+            forces[i] = {velocities[i].vx * config.mass / rrtConfig.dt, velocities[i].vy * config.mass / rrtConfig.dt};
+        }
+
     }
 
 

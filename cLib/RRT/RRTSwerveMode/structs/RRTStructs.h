@@ -2,10 +2,10 @@
 // Created by ibrahim on 9/15/23.
 //
 
-#ifndef CLIB_SWERVENODE_H
-#define CLIB_SWERVENODE_H
+#ifndef CLIB_RRTSTRUCTS_H
+#define CLIB_RRTSTRUCTS_H
 
-#include "SwerveDynamics.h"
+#include "../dynamics_kinematics/SwerveDynamics.h"
 
 namespace swerve {
     struct Node {
@@ -14,4 +14,4 @@ namespace swerve {
         std::shared_ptr<Node> parent;
     };
 }
-#endif //CLIB_SWERVENODE_H
+#endif //CLIB_RRTSTRUCTS_H

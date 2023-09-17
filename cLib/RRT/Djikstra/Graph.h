@@ -11,7 +11,6 @@
 
 struct Graph{
     std::vector<GraphNode> nodes;
-
     static Graph deepCopyGraph(const Graph& graph){
         Graph newGraph;
         newGraph.nodes.reserve(graph.nodes.size());

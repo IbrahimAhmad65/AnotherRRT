@@ -5,50 +5,63 @@
 #ifndef CLIB_SWERVEDYNAMICS_H
 #define CLIB_SWERVEDYNAMICS_H
 
-#include "Hardware.h"
+#include "../structs/Hardware.h"
 #include <valarray>
 #include <memory>
 #include <vector>
-#include "SwerveDynamicsStructs.h"
+#include "../structs/SwerveDynamicsStructs.h"
+#include "../structs/Config.h"
+
 namespace swerve {
     double getAngleOfVelocity(const swerve::Velocity &vel) {
         return atan2(vel.vy, vel.vx);
     }
 
     swerve::Force
-    getForceNeeded(swerve::ModuleState &start, swerve::ModuleState &end, double dt,
+    getForceNeeded(swerve::Velocity &start, swerve::Velocity &end, double dt,
                    swerve::SwerveConfig &swerveConfig) {
         swerve::Velocity changeInVel = end - start;
         swerve::Force forceNeeded = {changeInVel.vx * swerveConfig.mass / dt, changeInVel.vy * swerveConfig.mass / dt};
         return forceNeeded;
     }
 
-    swerve::ModuleState
-    updateModule(swerve::ModuleState moduleState, swerve::Force force, double dt, swerve::SwerveConfig &swerveConfig) {
+    swerve::Velocity
+    updateModule(swerve::Velocity moduleState, swerve::Force force, double dt, swerve::SwerveConfig &swerveConfig) {
         swerve::Velocity acceleration = {force.fx / swerveConfig.mass, force.fy / swerveConfig.mass};
         swerve::Velocity velocity = {acceleration.vx * dt, acceleration.vy * dt};
-        return {velocity + moduleState.velocity};
+        return {velocity + moduleState};
     }
 
 // circle with radius of this
-    double getMaximumForceIndependent(swerve::ModuleState moduleState, swerve::SwerveConfig swerveConfig) {
+    double getMaximumForceIndependent(swerve::Velocity moduleState, swerve::SwerveConfig swerveConfig) {
         double magStaticForce = swerveConfig.mu * swerveConfig.mass * 9.81 / 4;
         // TODO maybe not divide i dunno im a bozo
-        return fmin(magStaticForce, swerve::getTorqueFalcon(500));
+        return fmin(magStaticForce, swerve::getTorqueFalcon(moduleState.));
     }
 
-    swerve::ForceNAngularForce
+    swerve::ForceNTorque
     getTotalForceFromWheelForces(swerve::Force f0, swerve::Force f1, swerve::Force f2, swerve::Force f3,
-                                 swerve::ModulePosition m1, swerve::ModulePosition m2,
-                                 swerve::ModulePosition m3, swerve::ModulePosition m4) {
+                                 swerve::ModulePosition m0, swerve::ModulePosition m1,
+                                 swerve::ModulePosition m2, swerve::ModulePosition m3) {
         swerve::Force fTotal = f0 + f1 + f2 + f3;
         // find how much torque is applied, where each force is being applied at each module position
-        double torque = f0 * m1 + f1 * m2 + f2 * m3 + f3 * m4;
+
+
+        double torque = (m0 * f0) + (m1 * f1) + (m2 * f2) + (m3 * f3);
+
         return {fTotal, torque};
     }
 
+    swerve::Force getBestForce(swerve::Velocity &start, swerve::Velocity &end, double dt,
+                               swerve::SwerveConfig &swerveConfig) {
+        swerve::Force f = getForceNeeded(start, end, dt, swerveConfig);
+        double maxR = getMaximumForceIndependent(start, swerveConfig);
+        double r = sqrt(f.fx * f.fx + f.fy * f.fy);
+        return maxR > r ? f : f * (maxR / r);
+    }
+
     swerve::RandomForces
-    getRandomForcesForModule(const swerve::ModuleState &moduleState, swerve::SwerveConfig swerveConfig,
+    getRandomForcesForModule(const swerve::Velocity &moduleState, swerve::SwerveConfig swerveConfig,
                              int numRandomForces) {
         double maxR = getMaximumForceIndependent(moduleState, swerveConfig);
         swerve::RandomForces randomForces;
@@ -62,6 +75,14 @@ namespace swerve {
         }
         return randomForces;
     }
+    swerve::SwerveState getUpdatedSwerveState(const swerve::SwerveState &swerveState, const std::vector<swerve::Force> &forces,
+                                              const swerve::SwerveConfig &swerveConfig, double dt) {
+
+
+
+    }
+
+
 }
 
 #endif //CLIB_SWERVEDYNAMIC

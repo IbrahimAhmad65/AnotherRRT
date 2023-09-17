@@ -8,7 +8,7 @@
 #include "Config.h"
 #include "SwerveDriveKinematicsRRT.h"
 #include "Velocity.h"
-#include "structs/dynamics_structs/SwerveState.h"
+#include "SwerveState.h"
 #include "Node.h"
 
 namespace swerve {

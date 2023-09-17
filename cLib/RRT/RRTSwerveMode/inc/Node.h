@@ -5,10 +5,10 @@
 
 #include "SwerveState.h"
 
-namespace swerve{
-    struct Node{
-        SwerveState state;
-        std::shared_ptr<Node> parent;
-        double cost = 1e307;
-    };
-}
+namespace swerve {
+struct Node {
+  SwerveState state;
+  std::shared_ptr<Node> parent;
+  double cost = 1e307;
+};
+} // namespace swerve

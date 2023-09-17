@@ -12,6 +12,7 @@ namespace swerve {
 struct Velocity {
   double vx;
   double vy;
+
 public:
   Velocity operator+(const Velocity &other) const;
   Velocity operator-(const Velocity &other) const;

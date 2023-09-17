@@ -10,7 +10,7 @@ namespace swerve {
 struct PController {
   double kP;
 
-    double get(double setpoint, double goal) const;
+  double get(double setpoint, double goal) const;
 };
 
 } // namespace swerve

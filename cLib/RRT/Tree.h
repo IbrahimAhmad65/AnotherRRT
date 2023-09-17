@@ -5,13 +5,13 @@
 #ifndef CLIB_TREE_H
 #define CLIB_TREE_H
 
-#include <vector>
 #include "Node.h"
+#include <vector>
 
 struct Tree {
 
 public:
-    std::vector<Node> nodes;
+  std::vector<Node> nodes;
 };
 
-#endif //CLIB_TREE_H
+#endif // CLIB_TREE_H

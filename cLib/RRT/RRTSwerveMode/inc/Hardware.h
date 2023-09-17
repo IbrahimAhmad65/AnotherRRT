@@ -5,13 +5,11 @@
 #ifndef CLIB_HARDWARE_H
 #define CLIB_HARDWARE_H
 namespace swerve {
-    struct Falcon {
-    public:
-        double kT = .0192;
-        double kV = 509.2;
+struct Falcon {
+public:
+  double kT = .0192;
+  double kV = 509.2;
+};
 
-
-    };
-    
-}
-#endif //CLIB_HARDWARE_H
+} // namespace swerve
+#endif // CLIB_HARDWARE_H

@@ -7,10 +7,10 @@
 
 #include "Force.h"
 
-namespace swerve{
-    struct ModulePosition {
-        double x;
-        double y;
-    };
-}
-#endif //CLIB_MODULEPOSITION_H
+namespace swerve {
+struct ModulePosition {
+  double x;
+  double y;
+};
+} // namespace swerve
+#endif // CLIB_MODULEPOSITION_H

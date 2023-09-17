@@ -24,11 +24,15 @@ if (NOT wpilib_POPULATED)
     add_subdirectory(${wpilib_SOURCE_DIR} ${wpilib_BINARY_DIR})
 endif()
 
-add_executable(cLib main.cpp)
-target_include_directories(cLib PRIVATE RRT
-                                        RRT/Dijkstra
-                                        RRT/RRTSwerveMode/inc
-                                        RRT/RRTSwerveMode/src)
+file(GLOB_RECURSE cLib_src RRT/*.cpp)
+add_executable(cLib main.cpp ${cLib_src})
+
+
+# add_executable(cLib main.cpp)
+# target_include_directories(cLib PRIVATE RRT
+#                                         RRT/Dijkstra
+#                                         RRT/RRTSwerveMode/inc
+#                                         RRT/RRTSwerveMode/src)
 
 
 target_compile_options(cLib PRIVATE -Wdeprecated-declarations)

@@ -80,7 +80,7 @@ inline std::vector<Node> findPathFromTree(const Node &goalNode, const Node &star
     return fullPath;
 }
 
-inline Node extend(const Node &start, const Node &end, double maxAccel) {
+Node extend(const Node &start, const Node &end, double maxAccel) {
     Node newNode = end;
 
     Knot xKnotStart = {start.x, start.vx};

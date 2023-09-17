@@ -6,6 +6,7 @@
 #define CLIB_CONFIG_H
 
 #include "PController.h"
+#include "ModulePosition.h"
 #include <frc/kinematics/SwerveDriveKinematics.h>
 namespace swerve {
     struct RRTConfig {

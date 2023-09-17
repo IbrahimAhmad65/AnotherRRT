@@ -5,10 +5,14 @@
 #ifndef CLIB_FORCENTORQUE_H
 #define CLIB_FORCENTORQUE_H
 
-#include <valarray>
 #include "Force.h"
+#include <valarray>
 
 namespace swerve {
-    struct ForceNTorque;
-}
-#endif //CLIB_FORCENTORQUE_H
+
+struct ForceNTorque {
+  swerve::Force f;
+  double torque{};
+};
+} // namespace swerve
+#endif // CLIB_FORCENTORQUE_H

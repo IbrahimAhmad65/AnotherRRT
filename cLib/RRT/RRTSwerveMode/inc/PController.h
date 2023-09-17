@@ -5,26 +5,13 @@
 #ifndef CLIB_PCONTROLLER_H
 #define CLIB_PCONTROLLER_H
 
-#include <memory>
-#include <vector>
-#include <valarray>
-#include "RandomForces.h"
-#include "Position.h"
-
 namespace swerve {
 
+struct PController {
+  double kP;
 
-    struct PController {
-        double kP;
+    double get(double setpoint, double goal) const;
+};
 
-
-        [[nodiscard]] double get(double setpoint, double goal) const {
-            double error = setpoint - goal;
-            double output = kP * error;
-            return output;
-        }
-    };
-
-
-}
-#endif //CLIB_PCONTROLLER_H
+} // namespace swerve
+#endif // CLIB_PCONTROLLER_H

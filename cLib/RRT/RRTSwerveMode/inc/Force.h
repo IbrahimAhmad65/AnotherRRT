@@ -5,26 +5,15 @@
 #ifndef CLIB_FORCE_H
 #define CLIB_FORCE_H
 
-#include "ModulePosition.h"
 
 namespace swerve{
     struct Force {
         double fx;
         double fy;
 
-        Force operator+(const Force &other) const {
-            return {fx + other.fx, fy + other.fy};
-        }
-
-        double operator*(const Force &other) const {
-            return fx * other.fx + fy * other.fy;
-        }
-
-        Force operator*(double scalar) const {
-            return {fx * scalar, fy * scalar};
-        }
-
-
+        Force operator+(const Force &other); 
+        double operator*(const Force &other);
+        Force operator*(double scalar);
     };
 
 }

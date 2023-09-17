@@ -4,10 +4,10 @@
 
 #ifndef CLIB_OPERATORS_H
 #define CLIB_OPERATORS_H
-#include "PhysicsStructs/RandomForces.h"
-#include "PhysicsStructs/PController.h"
-#include "PhysicsStructs/Velocity.h"
-#include "PhysicsStructs/Pose.h"
+#include "RandomForces.h"
+#include "PController.h"
+#include "Velocity.h"
+#include "Pose.h"
 
 namespace swerve{
     double dot(swerve::ModulePosition &mod1, swerve::ModulePosition &mod2);

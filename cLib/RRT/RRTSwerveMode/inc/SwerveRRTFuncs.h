@@ -5,11 +5,11 @@
 #ifndef CLIB_SWERVERRTFUNCS_H
 #define CLIB_SWERVERRTFUNCS_H
 
-#include "structs/Config.h"
-#include "dynamics_kinematics/SwerveDriveKinematicsRRT.h"
-#include "structs/PhysicsStructs/Velocity.h"
+#include "Config.h"
+#include "SwerveDriveKinematicsRRT.h"
+#include "Velocity.h"
 #include "structs/dynamics_structs/SwerveState.h"
-#include "structs/rrt_structs/Node.h"
+#include "Node.h"
 
 namespace swerve {
     swerve::SwerveState

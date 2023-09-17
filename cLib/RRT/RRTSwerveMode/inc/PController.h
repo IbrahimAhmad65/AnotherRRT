@@ -8,7 +8,6 @@
 #include <memory>
 #include <vector>
 #include <valarray>
-#include "frc/kinematics/SwerveDriveKinematics.h"
 #include "RandomForces.h"
 #include "Position.h"
 

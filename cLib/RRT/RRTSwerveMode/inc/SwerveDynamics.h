@@ -5,16 +5,16 @@
 #ifndef CLIB_SWERVEDYNAMICS_H
 #define CLIB_SWERVEDYNAMICS_H
 
-#include "../structs/Hardware.h"
+#include "Hardware.h"
 #include <valarray>
 #include <memory>
 #include <vector>
-#include "../structs/PhysicsStructs/PController.h"
-#include "../structs/Config.h"
-#include "../structs/PhysicsStructs/Velocity.h"
-#include "../structs/dynamics_structs/SwerveState.h"
-#include "../structs/PhysicsStructs/ForceNTorque.h"
-#include "../structs/Operators.h"
+#include "PController.h"
+#include "Config.h"
+#include "Velocity.h"
+#include "SwerveState.h"
+#include "ForceNTorque.h"
+#include "Operators.h"
 
 namespace swerve {
     double getAngleOfVelocity(const swerve::Velocity &vel) {

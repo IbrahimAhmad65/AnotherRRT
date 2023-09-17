@@ -2,9 +2,9 @@
 #include "Debug/Timer.h"
 #include "RRT/Djikstra/Graph.h"
 #include "RRT/Djikstra/Djikstra.h"
-#include "RRT/RRTSwerveMode/structs/PhysicsStructs/PController.h"
-#include "RRT/RRTSwerveMode/structs/Config.h"
-#include "RRT/RRTSwerveMode/SwerveRRTFuncs.h"
+#include "RRT/RRTSwerveMode/inc/PController.h"
+#include "RRT/RRTSwerveMode/inc/Config.h"
+#include "RRT/RRTSwerveMode/inc/SwerveRRTFuncs.h"
 
 
 void rrtPointMassTest() {

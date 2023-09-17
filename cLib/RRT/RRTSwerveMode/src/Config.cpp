@@ -1,13 +1,8 @@
 //
-// Created by ibrahim on 9/15/23.
+// Created by ibrahim on 9/17/23.
 //
-
-#ifndef CLIB_CONFIG_H
-#define CLIB_CONFIG_H
-
-#include "PhysicsStructs/PController.h"
-
-namespace swerve {
+#include "../inc/Config.h"
+namespace swerve{
     struct RRTConfig {
         int maxIterations;
         int extendIterations;
@@ -34,5 +29,3 @@ namespace swerve {
 
     };
 }
-
-#endif //CLIB_CONFIG_H

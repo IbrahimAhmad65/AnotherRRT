@@ -6,7 +6,7 @@
 #define CLIB_VELOCITY_H
 
 #include <valarray>
-#include "../dynamics_structs/ModulePosition.h"
+#include "ModulePosition.h"
 
 namespace swerve{
     struct Velocity {

@@ -5,9 +5,9 @@
 #ifndef CLIB_SWERVESTATE_H
 #define CLIB_SWERVESTATE_H
 
-#include "../PhysicsStructs/Velocity.h"
-#include "../PhysicsStructs/PController.h"
-#include "../PhysicsStructs/Pose.h"
+#include "Velocity.h"
+#include "PController.h"
+#include "Pose.h"
 
 namespace swerve{
     struct SwerveState {

@@ -1,13 +1,9 @@
+
+// Created by ibrahim on 9/17/23.
 //
-// Created by ibrahim on 9/16/23.
-//
-
-#ifndef CLIB_FORCE_H
-#define CLIB_FORCE_H
-
-#include "../dynamics_structs/ModulePosition.h"
-
+#include "../inc/Force.h"
 namespace swerve{
+
     struct Force {
         double fx;
         double fy;
@@ -27,4 +23,3 @@ namespace swerve{
 
     };
 }
-#endif //CLIB_FORCE_H

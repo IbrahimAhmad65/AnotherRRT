@@ -5,7 +5,7 @@
 #ifndef CLIB_MODULEPOSITION_H
 #define CLIB_MODULEPOSITION_H
 
-#include "../PhysicsStructs/Force.h"
+#include "Force.h"
 
 namespace swerve{
     struct ModulePosition {

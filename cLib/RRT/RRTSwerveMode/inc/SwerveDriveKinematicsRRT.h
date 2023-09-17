@@ -6,11 +6,11 @@
 #define CLIB_SWERVEDRIVEKINEMATICSRRT_H
 
 #include <vector>
-#include "../structs/PhysicsStructs/PController.h"
+#include "PController.h"
 #include "frc/kinematics/SwerveDriveKinematics.h"
-#include "../structs/PhysicsStructs/RandomForces.h"
-#include "../structs/Config.h"
-#include "../structs/dynamics_structs/SwerveState.h"
+#include "RandomForces.h"
+#include "Config.h"
+#include "SwerveState.h"
 
 std::vector<swerve::Velocity> getWheelVelocities(const swerve::SwerveConfig &config, swerve::SwerveState currentState,
                                                  swerve::SwerveState targetState) {

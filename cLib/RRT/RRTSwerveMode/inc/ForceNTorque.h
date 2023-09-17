@@ -9,9 +9,6 @@
 #include "Force.h"
 
 namespace swerve {
-    struct ForceNTorque {
-        Force f;
-        double torque;
-    };
+    struct ForceNTorque;
 }
 #endif //CLIB_FORCENTORQUE_H

@@ -24,8 +24,13 @@ if(NOT wpilib_POPULATED)
     add_subdirectory(${wpilib_SOURCE_DIR} ${wpilib_BINARY_DIR})
 endif()
 
+add_executable(cLib main.cpp)
+target_include_directories(${PROJECT_NAME} PRIVATE RRT/RRTSwerveMode/inc)
+target_include_directories(${PROJECT_NAME} PRIVATE RRT/RRTSwerveMode/src)
+target_include_directories(${PROJECT_NAME} PRIVATE RRT/Djikstra)
+target_include_directories(${PROJECT_NAME} PRIVATE RRT)
 
-add_executable(cLib main.cpp RRT/Node.h RRT/CubicHermite.h RRT/Tree.h RRT/RRTPointMassUtil.h Debug/Timer.h RRT/RRTPointMass.h RRT/RRTPointMassManager.h RRT/Djikstra/Graph.h RRT/Djikstra/GraphNode.h RRT/Djikstra/Djikstra.h RRT/RRTSwerveMode/dynamics_kinematics/SwerveDynamics.h RRT/RRTSwerveMode/structs/Hardware.h RRT/RRTSwerveMode/RRTSwerveMode.h RRT/RRTSwerveMode/structs/PhysicsStructs/PController.h RRT/RRTSwerveMode/SwerveRRTFuncs.h RRT/RRTSwerveMode/dynamics_kinematics/SwerveDriveKinematicsRRT.h RRT/RRTSwerveMode/structs/Config.h RRT/RRTSwerveMode/structs/PhysicsStructs/RandomForces.h RRT/RRTSwerveMode/structs/Operators.h RRT/RRTSwerveMode/structs/PhysicsStructs/Position.h RRT/RRTSwerveMode/structs/PhysicsStructs/ForceNTorque.h RRT/RRTSwerveMode/structs/dynamics_structs/ModulePosition.h RRT/RRTSwerveMode/structs/PhysicsStructs/Force.h RRT/RRTSwerveMode/structs/PhysicsStructs/Velocity.h RRT/RRTSwerveMode/structs/dynamics_structs/SwerveState.h RRT/RRTSwerveMode/structs/PhysicsStructs/Pose.h RRT/RRTSwerveMode/structs/rrt_structs/Node.h)
+
 target_compile_options(cLib PRIVATE -Wdeprecated-declarations)
 target_link_libraries(cLib PUBLIC wpimath)
 #target_link_libraries(cLib PUBLIC ntcore)

@@ -1,4 +1,0 @@
-/home/ibrahim/clion-2022.3.1/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Release -S /home/ibrahim/robotics/AnotherRRT/cLib -B /home/ibrahim/robotics/AnotherRRT/cLib/cmake-build-release
--- Configuring done
--- Generating done
--- Build files have been written to: /home/ibrahim/robotics/AnotherRRT/cLib/cmake-build-release

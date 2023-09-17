@@ -1,7 +1,0 @@
-/home/ibrahim/ides/clion-2023.1.3/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/ibrahim/ides/clion-2023.1.3/bin/ninja/linux/x64/ninja -G Ninja -S /home/ibrahim/robotCode/AnotherRRT/cLib -B /home/ibrahim/robotCode/AnotherRRT/cLib/cmake-build-debug
--- Platform version: 
--- Found libatomic: /usr/lib/libatomic.so
--- Found libatomic: /usr/lib/libatomic.so
--- Configuring done
--- Generating done
--- Build files have been written to: /home/ibrahim/robotCode/AnotherRRT/cLib/cmake-build-debug

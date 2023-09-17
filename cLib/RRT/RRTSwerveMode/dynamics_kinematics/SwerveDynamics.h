@@ -9,8 +9,12 @@
 #include <valarray>
 #include <memory>
 #include <vector>
-#include "../structs/SwerveDynamicsStructs.h"
+#include "../structs/PhysicsStructs/PController.h"
 #include "../structs/Config.h"
+#include "../structs/PhysicsStructs/Velocity.h"
+#include "../structs/dynamics_structs/SwerveState.h"
+#include "../structs/PhysicsStructs/ForceNTorque.h"
+#include "../structs/Operators.h"
 
 namespace swerve {
     double getAngleOfVelocity(const swerve::Velocity &vel) {
@@ -18,15 +22,16 @@ namespace swerve {
     }
 
     swerve::Force
-    getForceNeeded(swerve::Velocity &start, swerve::Velocity &end, double dt,
-                   swerve::SwerveConfig &swerveConfig) {
+    getForceNeeded(const swerve::Velocity &start, const swerve::Velocity &end, double dt,
+                   const swerve::SwerveConfig &swerveConfig) {
         swerve::Velocity changeInVel = end - start;
         swerve::Force forceNeeded = {changeInVel.vx * swerveConfig.mass / dt, changeInVel.vy * swerveConfig.mass / dt};
         return forceNeeded;
     }
 
     swerve::Velocity
-    updateModule(swerve::Velocity moduleState, swerve::Force force, double dt, swerve::SwerveConfig &swerveConfig) {
+    updateModule(swerve::Velocity moduleState, swerve::Force force, double dt,
+                 const swerve::SwerveConfig &swerveConfig) {
         swerve::Velocity acceleration = {force.fx / swerveConfig.mass, force.fy / swerveConfig.mass};
         swerve::Velocity velocity = {acceleration.vx * dt, acceleration.vy * dt};
         return {velocity + moduleState};
@@ -36,7 +41,7 @@ namespace swerve {
     double getMaximumForceIndependent(swerve::Velocity moduleState, swerve::SwerveConfig swerveConfig) {
         double magStaticForce = swerveConfig.mu * swerveConfig.mass * 9.81 / 4;
         // TODO maybe not divide i dunno im a bozo
-        return fmin(magStaticForce, swerve::getTorqueFalcon(moduleState.));
+        return fmin(magStaticForce, swerve::getTorqueFalcon(moduleState.vx));
     }
 
     swerve::ForceNTorque
@@ -52,16 +57,22 @@ namespace swerve {
         return {fTotal, torque};
     }
 
-    swerve::Force getBestForce(swerve::Velocity &start, swerve::Velocity &end, double dt,
-                               swerve::SwerveConfig &swerveConfig) {
+    swerve::Force getBestForce(const swerve::Velocity &start, const swerve::Velocity &end, double dt,
+                               const swerve::SwerveConfig &swerveConfig) {
         swerve::Force f = getForceNeeded(start, end, dt, swerveConfig);
         double maxR = getMaximumForceIndependent(start, swerveConfig);
         double r = sqrt(f.fx * f.fx + f.fy * f.fy);
         return maxR > r ? f : f * (maxR / r);
     }
 
+    swerve::Velocity
+    getAverageVelocity(const swerve::Velocity &v0, const swerve::Velocity &v1, const swerve::Velocity &v2,
+                       const swerve::Velocity &v3) {
+        return (v0 + v1 + v2 + v3) * 0.25;
+    }
+
     swerve::RandomForces
-    getRandomForcesForModule(const swerve::Velocity &moduleState, swerve::SwerveConfig swerveConfig,
+    getRandomForcesForModule(const swerve::Velocity &moduleState, const swerve::SwerveConfig &swerveConfig,
                              int numRandomForces) {
         double maxR = getMaximumForceIndependent(moduleState, swerveConfig);
         swerve::RandomForces randomForces;
@@ -75,9 +86,35 @@ namespace swerve {
         }
         return randomForces;
     }
-    swerve::SwerveState getUpdatedSwerveState(const swerve::SwerveState &swerveState, const std::vector<swerve::Force> &forces,
-                                              const swerve::SwerveConfig &swerveConfig, double dt) {
 
+    swerve::SwerveState
+    getUpdatedSwerveState(const swerve::SwerveState &swerveState, const std::vector<swerve::Force> &forces,
+                          const swerve::SwerveConfig &swerveConfig, double dt) {
+        swerve::SwerveState newSwerveState = swerveState;
+        ForceNTorque forceNTorque = getTotalForceFromWheelForces(forces[0], forces[1], forces[2], forces[3],
+                                                                 swerveConfig.m0,
+                                                                 swerveConfig.m1,
+                                                                 swerveConfig.m2,
+                                                                 swerveConfig.m3);
+        swerve::Velocity module0Vel = updateModule(swerveState.m0, forceNTorque.f, dt, swerveConfig);
+        swerve::Velocity module1Vel = updateModule(swerveState.m1, forceNTorque.f, dt, swerveConfig);
+        swerve::Velocity module2Vel = updateModule(swerveState.m2, forceNTorque.f, dt, swerveConfig);
+        swerve::Velocity module3Vel = updateModule(swerveState.m3, forceNTorque.f, dt, swerveConfig);
+        newSwerveState.m0 = module0Vel;
+        newSwerveState.m1 = module1Vel;
+        newSwerveState.m2 = module2Vel;
+        newSwerveState.m3 = module3Vel;
+        Velocity avg = getAverageVelocity(module0Vel, module1Vel, module2Vel, module3Vel);
+        newSwerveState.firstDerivative = plus(newSwerveState.firstDerivative, avg);
+        newSwerveState.firstDerivative.theta += forceNTorque.torque / swerveConfig.inertia;
+
+        newSwerveState.position = plus(newSwerveState.position, avg * .5 * dt * dt);
+        newSwerveState.position.theta += forceNTorque.torque / swerveConfig.inertia * .5 * dt * dt;
+        newSwerveState.m0 = module0Vel;
+        newSwerveState.m1 = module1Vel;
+        newSwerveState.m2 = module2Vel;
+        newSwerveState.m3 = module3Vel;
+        return newSwerveState;
 
 
     }

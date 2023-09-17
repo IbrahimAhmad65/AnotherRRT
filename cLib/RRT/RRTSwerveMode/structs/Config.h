@@ -5,7 +5,7 @@
 #ifndef CLIB_CONFIG_H
 #define CLIB_CONFIG_H
 
-#include "SwerveDynamicsStructs.h"
+#include "PhysicsStructs/PController.h"
 
 namespace swerve {
     struct RRTConfig {
@@ -19,6 +19,7 @@ namespace swerve {
     struct SwerveConfig {
         double mu;
         double mass;
+        double inertia;
         PController xController;
         PController yController;
         PController thetaController;

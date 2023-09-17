@@ -1,25 +1,19 @@
-
 // Created by ibrahim on 9/17/23.
 //
-#include "../inc/Force.h"
+#include "Force.h"
+
 namespace swerve{
 
-    struct Force {
-        double fx;
-        double fy;
+Force Force::operator+(const Force &other) const {
+    return {fx + other.fx, fy + other.fy};
+}
 
-        Force operator+(const Force &other) const {
-            return {fx + other.fx, fy + other.fy};
-        }
+double Force::operator*(const Force &other) const {
+    return fx * other.fx + fy * other.fy;
+}
 
-        double operator*(const Force &other) const {
-            return fx * other.fx + fy * other.fy;
-        }
+Force Force::operator*(double scalar) const {
+    return {fx * scalar, fy * scalar};
+}
 
-        Force operator*(double scalar) const {
-            return {fx * scalar, fy * scalar};
-        }
-
-
-    };
 }

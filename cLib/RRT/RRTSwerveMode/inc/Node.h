@@ -5,7 +5,7 @@
 #ifndef CLIB_NODE_H
 #define CLIB_NODE_H
 
-#include "../dynamics_structs/SwerveState.h"
+#include "SwerveState.h"
 
 namespace swerve{
     struct Node{

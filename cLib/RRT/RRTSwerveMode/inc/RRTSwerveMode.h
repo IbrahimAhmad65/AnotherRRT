@@ -4,6 +4,9 @@
 
 #ifndef CLIB_RRTSWERVEMODE_H
 #define CLIB_RRTSWERVEMODE_H
+
+#include "Node.h"
+
 namespace swerve{
 
 }

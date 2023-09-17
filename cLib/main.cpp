@@ -2,9 +2,9 @@
 #include "Debug/Timer.h"
 #include "RRT/Dijkstra/Graph.h"
 #include "RRT/Dijkstra/Dijkstra.h"
-#include "RRT/RRTSwerveMode/inc/PController.h"
-#include "RRT/RRTSwerveMode/inc/Config.h"
-#include "RRT/RRTSwerveMode/inc/SwerveRRTFuncs.h"
+#include "PController.h"
+#include "Config.h"
+#include "SwerveRRTFuncs.h"
 
 
 void rrtPointMassTest() {
@@ -33,7 +33,7 @@ void rrtPointMassTest() {
     std::cout << "Path: " << path[-1].time << std::endl;
 }
 
-void djikstraTest() {
+void dijkstraTest() {
 
     Graph g = Graph();
     GraphNode n1 = {0, 0, 0, 0, 1e308, std::vector<Edge>()};
@@ -46,7 +46,7 @@ void djikstraTest() {
 //        g.nodes[0].neighbors.erase(g.nodes[0].neighbors.begin());
 //        std::cout << "Hey" << std::endl;
 
-    auto k = djikstra_(nodes, nodes[0], nodes[2]);
+    auto k = dijkstra_(nodes, nodes[0], nodes[2]);
 
     for (auto j: k) {
         std::cout << j.x << " " << j.y << " " << j.cost << std::endl;

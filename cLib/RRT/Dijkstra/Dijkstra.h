@@ -2,15 +2,15 @@
 // Created by ibrahim on 9/4/23.
 //
 
-#ifndef CLIB_DJIKSTRA_H
-#define CLIB_DJIKSTRA_H
+#ifndef CLIB_DIJKSTRA_H
+#define CLIB_DIJKSTRA_H
 
 #include <vector>
 #include "GraphNode.h"
 #include "Graph.h"
 
 // Mutates Start, also all other nodes must be 1e308
-std::vector<GraphNode> djikstra_(std::vector<std::shared_ptr<GraphNode>> nodes, std::shared_ptr<GraphNode> start, std::shared_ptr<GraphNode> end) {
+std::vector<GraphNode> dijkstra_(std::vector<std::shared_ptr<GraphNode>> nodes, std::shared_ptr<GraphNode> start, std::shared_ptr<GraphNode> end) {
     start->cost = 0;
     std::vector<std::shared_ptr<GraphNode>>& unvisited = nodes;
 
@@ -31,4 +31,4 @@ std::vector<GraphNode> djikstra_(std::vector<std::shared_ptr<GraphNode>> nodes, 
     return {};
 }
 
-#endif //CLIB_DJIKSTRA_H
+#endif //CLIB_DIJKSTRA_H

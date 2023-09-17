@@ -1,9 +1,7 @@
 //
 // Created by ibrahim on 9/4/23.
 //
-
-#ifndef CLIB_GRAPH_H
-#define CLIB_GRAPH_H
+#pragma once
 
 #include "../RRTPointMassUtil.h"
 #include "GraphNode.h"
@@ -54,4 +52,3 @@ generateFilledNodes(const std::vector<GraphNode> &nodes, double maxAccel) {
 
   return filledNodes;
 }
-#endif // CLIB_GRAPH_H

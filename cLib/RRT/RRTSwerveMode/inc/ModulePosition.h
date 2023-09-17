@@ -2,9 +2,7 @@
 // Created by ibrahim on 9/16/23.
 //
 
-#ifndef CLIB_MODULEPOSITION_H
-#define CLIB_MODULEPOSITION_H
-
+#pragma once
 #include "Force.h"
 
 namespace swerve {
@@ -13,4 +11,3 @@ struct ModulePosition {
   double y;
 };
 } // namespace swerve
-#endif // CLIB_MODULEPOSITION_H

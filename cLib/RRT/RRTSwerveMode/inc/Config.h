@@ -2,9 +2,7 @@
 // Created by ibrahim on 9/15/23.
 //
 
-#ifndef CLIB_CONFIG_H
-#define CLIB_CONFIG_H
-
+#pragma once
 #include "ModulePosition.h"
 #include "PController.h"
 #include <frc/kinematics/SwerveDriveKinematics.h>
@@ -34,5 +32,3 @@ struct SwerveConfig {
   frc::SwerveDriveKinematics<4> kinematics;
 };
 } // namespace swerve
-
-#endif // CLIB_CONFIG_H

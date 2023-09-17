@@ -1,9 +1,7 @@
 //
 // Created by ibrahim on 9/14/23.
 //
-
-#ifndef CLIB_HARDWARE_H
-#define CLIB_HARDWARE_H
+#pragma once
 namespace swerve {
 struct Falcon {
 public:
@@ -12,4 +10,3 @@ public:
 };
 
 } // namespace swerve
-#endif // CLIB_HARDWARE_H

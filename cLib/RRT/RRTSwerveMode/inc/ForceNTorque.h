@@ -1,9 +1,7 @@
 //
 // Created by ibrahim on 9/16/23.
 //
-
-#ifndef CLIB_FORCENTORQUE_H
-#define CLIB_FORCENTORQUE_H
+#pragma once
 
 #include "Force.h"
 #include <valarray>
@@ -15,4 +13,3 @@ struct ForceNTorque {
   double torque{};
 };
 } // namespace swerve
-#endif // CLIB_FORCENTORQUE_H

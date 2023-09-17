@@ -2,9 +2,8 @@
 // Created by ibrahim on 9/4/23.
 //
 
-#ifndef CLIB_GRAPHNODE_H
-#define CLIB_GRAPHNODE_H
-
+#pragma once
+#include <limits>
 #include <memory>
 #include <vector>
 
@@ -63,5 +62,3 @@ bool compareNodeCost(const GraphNode &node1, const GraphNode &node2) {
 bool compareEdgeCost(const Edge &edge1, const Edge &edge2) {
   return edge1.cost < edge2.cost;
 }
-
-#endif // CLIB_GRAPHNODE_H

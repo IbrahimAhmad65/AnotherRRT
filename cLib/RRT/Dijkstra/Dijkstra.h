@@ -2,9 +2,7 @@
 // Created by ibrahim on 9/4/23.
 //
 
-#ifndef CLIB_DIJKSTRA_H
-#define CLIB_DIJKSTRA_H
-
+#pragma once
 #include "Graph.h"
 #include "GraphNode.h"
 #include <vector>
@@ -31,5 +29,3 @@ std::vector<GraphNode> dijkstra_(std::vector<std::shared_ptr<GraphNode>> nodes,
 
   return {};
 }
-
-#endif // CLIB_DIJKSTRA_H

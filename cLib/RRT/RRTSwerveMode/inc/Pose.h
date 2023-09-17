@@ -1,9 +1,7 @@
 //
 // Created by ibrahim on 9/16/23.
 //
-
-#ifndef CLIB_POSE_H
-#define CLIB_POSE_H
+#pragma once
 
 #include "Position.h"
 #include "Velocity.h"
@@ -20,4 +18,3 @@ struct Pose {
   Pose operator/(double scalar) const;
 };
 } // namespace swerve
-#endif // CLIB_POSE_H

@@ -1,9 +1,7 @@
 //
 // Created by ibrahim on 9/16/23.
 //
-
-#ifndef CLIB_OPERATORS_H
-#define CLIB_OPERATORS_H
+#pragma once
 #include "PController.h"
 #include "Pose.h"
 #include "RandomForces.h"
@@ -21,5 +19,3 @@ double dot(swerve::ModulePosition &mod, swerve::Force &force);
 double dot(swerve::Force &force, swerve::ModulePosition &mod);
 Pose plus(Pose &pose, Velocity &vel);
 } // namespace swerve
-
-#endif // CLIB_OPERATORS_H

@@ -2,9 +2,7 @@
 // Created by ibrahim on 9/16/23.
 //
 
-#ifndef CLIB_FORCE_H
-#define CLIB_FORCE_H
-
+#pragma once
 namespace swerve {
 struct Force {
   double fx;
@@ -16,4 +14,3 @@ struct Force {
 };
 
 } // namespace swerve
-#endif // CLIB_FORCE_H

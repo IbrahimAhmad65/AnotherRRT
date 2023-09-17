@@ -25,16 +25,20 @@ if(NOT wpilib_POPULATED)
 endif()
 
 add_executable(cLib main.cpp)
-target_include_directories(${PROJECT_NAME} PRIVATE RRT/RRTSwerveMode/inc)
-target_include_directories(${PROJECT_NAME} PRIVATE RRT/RRTSwerveMode/src)
-target_include_directories(${PROJECT_NAME} PRIVATE RRT/Djikstra)
-target_include_directories(${PROJECT_NAME} PRIVATE RRT)
+target_include_directories(cLib PRIVATE RRT/RRTSwerveMode/inc)
+target_include_directories(cLib PRIVATE RRT/RRTSwerveMode/src)
+target_include_directories(cLib PRIVATE RRT/Djikstra)
+target_include_directories(cLib PRIVATE RRT)
 
 
 target_compile_options(cLib PRIVATE -Wdeprecated-declarations)
 target_link_libraries(cLib PUBLIC wpimath)
 #target_link_libraries(cLib PUBLIC ntcore)
 target_compile_options(cLib PRIVATE -march=native)
-
+# Generate compile_commands.json by default
+if (NOT CMAKE_EXPORT_COMPILE_COMMANDS)
+  set(CMAKE_EXPORT_COMPILE_COMMANDS "YES" CACHE STRING "" FORCE)
+endif()
+#include "frc/kinematics/SwerveDriveKinematics.h"
 #target_compile_options(cLib PRIVATE -fsanitize=address)
 #target_link_options(cLib PRIVATE -fsanitize=address)

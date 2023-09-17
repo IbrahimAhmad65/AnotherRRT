@@ -1,7 +1,7 @@
 //
 // Created by ibrahim on 9/17/23.
 //
-#include "../inc/Config.h"
+#include "Config.h"
 namespace swerve{
     struct RRTConfig {
         int maxIterations;

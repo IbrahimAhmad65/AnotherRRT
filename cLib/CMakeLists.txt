@@ -8,7 +8,7 @@ include(FetchContent)
 FetchContent_Declare(
         wpilib
         GIT_REPOSITORY https://github.com/wpilibsuite/allwpilib
-        GIT_TAG        main
+        GIT_TAG        34e7849605fde52547ddf7a4884532e81d6a88bb
 )
 FetchContent_GetProperties(wpilib)
 if (NOT wpilib_POPULATED)

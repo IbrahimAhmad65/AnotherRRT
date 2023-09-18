@@ -42,6 +42,6 @@ swerve::Node extend(const swerve::Node &start, const swerve::Node &end,
     count++;
   }
   double totalTime = start.cost + count * rrtConfig.dt;
-  return {currentState, totalTime, std::make_shared<Node>(start)};
+  return {currentState, std::make_shared<Node>(start), totalTime};
 }
 } // namespace swerve

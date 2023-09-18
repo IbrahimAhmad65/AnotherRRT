@@ -103,8 +103,8 @@ getUpdatedSwerveState(const swerve::SwerveState &swerveState,
   newSwerveState.firstDerivative = plus(newSwerveState.firstDerivative, avg);
   newSwerveState.firstDerivative.theta +=
       forceNTorque.torque / swerveConfig.inertia;
-
-  newSwerveState.position = plus(newSwerveState.position, avg * .5 * dt * dt);
+  Velocity v = avg * .5 * dt * dt;
+  newSwerveState.position = plus(newSwerveState.position, v);
   newSwerveState.position.theta +=
       forceNTorque.torque / swerveConfig.inertia * .5 * dt * dt;
   newSwerveState.m0 = module0Vel;

@@ -1,5 +1,6 @@
+#include "../inc/Hardware.h"
 namespace swerve {
-static double getTorqueFalcon(double rpm) {
+double getTorqueFalcon(double rpm) {
   // yes im a bozo i know
   return 50;
 }

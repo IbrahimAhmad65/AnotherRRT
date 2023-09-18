@@ -8,6 +8,7 @@
 #include "Config.h"
 #include "Node.h"
 #include "SwerveDriveKinematicsRRT.h"
+#include "SwerveDynamics.h"
 #include "SwerveState.h"
 #include "Velocity.h"
 

@@ -1,9 +1,7 @@
 //
 // Created by ibrahim on 9/11/23.
 //
-
-#ifndef CLIB_SWERVEDYNAMICS_H
-#define CLIB_SWERVEDYNAMICS_H
+#pragma once
 
 #include "Config.h"
 #include "ForceNTorque.h"
@@ -48,5 +46,3 @@ getUpdatedSwerveState(const swerve::SwerveState &swerveState,
                       const swerve::SwerveConfig &swerveConfig, double dt);
 
 } // namespace swerve
-
-#endif // CLIB_SWERVEDYNAMIC

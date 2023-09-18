@@ -5,7 +5,7 @@
 #pragma once
 #include "ModulePosition.h"
 #include "PController.h"
-#include <frc/kinematics/SwerveDriveKinematics.h>
+#include "frc/kinematics/SwerveDriveKinematics.h"
 namespace swerve {
 struct RRTConfig {
   int maxIterations;

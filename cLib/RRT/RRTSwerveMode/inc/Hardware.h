@@ -8,5 +8,5 @@ public:
   double kT = .0192;
   double kV = 509.2;
 };
-
+double getTorqueFalcon(double rpm);
 } // namespace swerve

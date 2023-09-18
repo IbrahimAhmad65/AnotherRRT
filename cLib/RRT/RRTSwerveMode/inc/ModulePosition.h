@@ -9,6 +9,6 @@ namespace swerve {
 struct ModulePosition {
   double x;
   double y;
-  double operator*(Force& force) const;
+  double operator*(Force &force) const;
 };
 } // namespace swerve

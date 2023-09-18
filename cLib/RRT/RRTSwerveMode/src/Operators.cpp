@@ -1,7 +1,5 @@
 #include "../inc/Operators.h"
 
-
-
 namespace swerve {
 double dot(swerve::ModulePosition &mod1, swerve::ModulePosition &mod2) {
   return mod1.x * mod2.x + mod1.y * mod2.y;

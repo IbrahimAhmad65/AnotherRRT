@@ -1,4 +1,6 @@
 #include "../inc/SwerveRRTFuncs.h"
+#include <iostream>
+#include <iterator>
 
 namespace swerve {
 
@@ -35,9 +37,12 @@ swerve::Node extend(const swerve::Node &start, const swerve::Node &end,
   int count = 0;
   SwerveState currentState = start.state;
   //        double dt = rrtConfig.dt;
+  std::cout << rrtConfig.extendIterations << std::endl;
   while (count < rrtConfig.extendIterations &&
          (currentState.position - end.state.position).getMagnitude() <
              rrtConfig.extendthreshold) {
+    std::cout << "HI" << std::endl;
+    std::cout << currentState.position.p.x << std::endl;
     currentState = iterateWithController(start, end, config, rrtConfig);
     count++;
   }

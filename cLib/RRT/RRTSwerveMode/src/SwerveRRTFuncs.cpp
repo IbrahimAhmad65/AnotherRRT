@@ -1,16 +1,16 @@
 #include "../inc/SwerveRRTFuncs.h"
+#include <cstdlib>
 #include <iostream>
 #include <iterator>
 
 namespace swerve {
 
-swerve::SwerveState iterateWithController(const swerve::Node &start,
-                                          const swerve::Node &end,
+swerve::SwerveState iterateWithController(const swerve::SwerveState &start,
+                                          const swerve::SwerveState &end,
                                           const swerve::SwerveConfig &config,
                                           const swerve::RRTConfig &rrtConfig) {
 
-  std::vector<Velocity> velocities =
-      getWheelVelocities(config, start.state, end.state);
+  std::vector<Velocity> velocities = getWheelVelocities(config, start, end);
   std::vector<Force> forces;
   forces.reserve(4);
   //        for (int i = 0; i < 4; i++) {
@@ -18,16 +18,17 @@ swerve::SwerveState iterateWithController(const swerve::Node &start,
   //            velocities[i].vy * config.mass / rrtConfig.dt};
   //        forces[0] = getBestForce(velocities[i], config);
   //        }
-  forces.push_back(
-      getBestForce(start.state.m0, velocities[0], rrtConfig.dt, config));
-  forces.push_back(
-      getBestForce(start.state.m1, velocities[1], rrtConfig.dt, config));
-  forces.push_back(
-      getBestForce(start.state.m2, velocities[2], rrtConfig.dt, config));
-  forces.push_back(
-      getBestForce(start.state.m3, velocities[3], rrtConfig.dt, config));
+  forces.push_back(getBestForce(start.m0, velocities[0], rrtConfig.dt, config));
+  forces.push_back(getBestForce(start.m1, velocities[1], rrtConfig.dt, config));
+  forces.push_back(getBestForce(start.m2, velocities[2], rrtConfig.dt, config));
+  forces.push_back(getBestForce(start.m3, velocities[3], rrtConfig.dt, config));
+
+  for (auto k : forces) {
+    std::cout << k.fx << " " << k.fy << std::endl;
+  }
+
   SwerveState newState =
-      getUpdatedSwerveState(start.state, forces, config, rrtConfig.dt);
+      getUpdatedSwerveState(start, forces, config, rrtConfig.dt);
   return newState;
 }
 
@@ -37,13 +38,23 @@ swerve::Node extend(const swerve::Node &start, const swerve::Node &end,
   int count = 0;
   SwerveState currentState = start.state;
   //        double dt = rrtConfig.dt;
-  std::cout << rrtConfig.extendIterations << std::endl;
+  //   bool loopCheck =
+  //       fabs((currentState.position - end.state.position).getMagnitude()) <
+  //       rrtConfig.extendthreshold;
+  //   std::cout << loopCheck << std::endl;
+  //   std::cout << rrtConfig.extendthreshold << std::endl;
+  //   std::cout << ((currentState.position - end.state.position).getMagnitude()
+  //   >
+  //                 .1)
+  //             << std::endl;
   while (count < rrtConfig.extendIterations &&
-         (currentState.position - end.state.position).getMagnitude() <
+         (currentState.position - end.state.position).getMagnitude() >
              rrtConfig.extendthreshold) {
     std::cout << "HI" << std::endl;
     std::cout << currentState.position.p.x << std::endl;
-    currentState = iterateWithController(start, end, config, rrtConfig);
+    currentState =
+        iterateWithController(start.state, end.state, config, rrtConfig);
+    std::cout << currentState.position.p.x << std::endl;
     count++;
   }
   double totalTime = start.cost + count * rrtConfig.dt;

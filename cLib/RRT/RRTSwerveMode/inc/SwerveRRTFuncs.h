@@ -12,15 +12,16 @@
 #include "SwerveState.h"
 #include "Velocity.h"
 
-namespace swerve {
-swerve::SwerveState iterateWithController(const swerve::Node &start,
-                                          const swerve::Node &end,
-                                          const swerve::SwerveConfig &config,
-                                          const swerve::RRTConfig &rrtConfig);
+namespace swerve
+{
+    swerve::SwerveState iterateWithController(const swerve::SwerveState &start,
+                                              const swerve::SwerveState &end,
+                                              const swerve::SwerveConfig &config,
+                                              const swerve::RRTConfig &rrtConfig);
 
-swerve::Node extend(const swerve::Node &start, const swerve::Node &end,
-                    const swerve::SwerveConfig &config,
-                    const swerve::RRTConfig &rrtConfig);
+    swerve::Node extend(const swerve::Node &start, const swerve::Node &end,
+                        const swerve::SwerveConfig &config,
+                        const swerve::RRTConfig &rrtConfig);
 
 } // namespace swerve
 #endif // CLIB_SWERVERRTFUNCS_H

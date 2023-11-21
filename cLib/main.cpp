@@ -71,7 +71,7 @@ void swerveExtendTest() {
   swerve::SwerveConfig config{1,         70,         10,        {.1}, {.1},
                               {.1},      {.1},       {.1},      {.1}, {.5, .5},
                               {.5, -.5}, {-.5, -.5}, {-.5, .5}, kin};
-  swerve::RRTConfig rrtConfig{1, 100, 1, .1, .1};
+  swerve::RRTConfig rrtConfig{1, 100, .1, .1, .1};
   auto k = swerve::extend({start}, {end}, config, rrtConfig);
   std::cout << k.state.position.p.x << " " << k.state.position.p.y << std::endl;
 }

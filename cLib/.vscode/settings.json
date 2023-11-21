@@ -2,5 +2,9 @@
     "C_Cpp.errorSquiggles": "enabled",
     "clangd.arguments": [
         "-compile-commands-dir=build/"
-    ]
+    ],
+    // "C_Cpp.intelliSenseEngine": "default",
+    "files.associations": {
+        "ostream": "cpp"
+    }
 }

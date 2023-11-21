@@ -14,4 +14,7 @@ Pose Pose::operator+(const Pose &other) const {
 Pose Pose::operator/(double scalar) const {
   return {{p.x / scalar, p.y / scalar}, theta / scalar};
 }
+std::string Pose::toString() const{
+  return "x: " + std::to_string(p.x) +  "y: " + std::to_string(p.y);
+}
 } // namespace swerve

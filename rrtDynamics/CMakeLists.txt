@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 23)
 
 
 file(GLOB_RECURSE rrtDynamics_src src/*.cpp)
-add_executable(rrtDynamics main.cpp ${rrtDynamics_src})
+add_executable(rrtDynamics src/main.cpp ${rrtDynamics_src})
 
 
 target_include_directories(rrtDynamics PRIVATE

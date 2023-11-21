@@ -1,0 +1,28 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER_LAUNCHER=ccache; echo \"----------\";cmake --build build" // cd to your build directory
+        },
+        {
+            "label": "format",
+            "type": "shell",
+            "command": "find inc \\( -name \\*\\.h -o -name \\*\\.cpp \\) | xargs clang-format -i; find src \\( -name \\*\\.h -o -name \\*\\.cpp \\) | xargs clang-format -i;" // cd to your build directory
+        },
+        {
+            "label": "run",
+            "type": "shell",
+            "command": "./build/rrtDynamics" // cd to your build directory
+        },
+        {
+            "label": "build and run",
+            "type": "shell",
+            "command": "cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER_LAUNCHER=ccache; echo \"----------\"; cmake --build build; echo \"----------\";./build/rrtDynamics" // cd to your build directory
+        }
+        // 
+    ]
+}

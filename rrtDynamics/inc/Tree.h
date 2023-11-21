@@ -5,6 +5,6 @@
 namespace pmass {
 struct Tree {
   std::vector<std::shared_ptr<Point>> list;
-  std::weak_ptr<Point> root;
+  std::shared_ptr<Point> root;
 };
 } // namespace pmass

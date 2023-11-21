@@ -1,6 +1,6 @@
+#include "RRTPointMass.h"
 #include "Hermite.h"
 #include "Point.h"
-#include "RTPointMass.h"
 #include "Tree.h"
 #include "Vector.h"
 #include <cmath>
